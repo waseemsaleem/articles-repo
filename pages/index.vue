@@ -1,13 +1,10 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
+
       <v-card>
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Articles Listing
         </v-card-title>
 
         <ul>
@@ -49,7 +46,15 @@ export default {
   beforeMount() {
     this.fetch();
   },
+  computed: {
+    articles () {
+      return this.$store.state.articles.list
+    }
+  },
   methods: {
+    addTodo (value) {
+      this.$store.commit('articles/addArticles', value)
+    },
     async fetch() {
       debugger;
       const res = await fetch(
